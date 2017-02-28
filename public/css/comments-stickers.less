@@ -1,0 +1,104 @@
+#commentform {
+
+  .form-submit {
+    display: block;
+    width: auto;
+    padding-right: 12px;
+  }
+
+  .comments__stickers-button-wrap {
+    position: relative;
+    display: block;
+    float: left;
+  }
+
+  .comments__stickers-button {
+    cursor: pointer;
+    background: transparent url("../images/stikers-icon.svg") no-repeat center center / contain;
+    width: 42px;
+    height: 42px;
+    display: block;
+    float: left;
+    font-size: 0;
+  }
+
+  .comments__stickers-button-wrap {
+    &:hover{
+      .comments__stickers-box-wrap {
+        height: 280px;
+        &.stickers-submit{
+          height: 0;
+        }
+      }
+
+    }
+  }
+
+  .comments__stickers-box-wrap {
+    width: 280px;
+    transition: height 0.4s ease-out 0s;
+    display: block;
+    position: absolute;
+    height: 0;
+    margin: auto;
+    left: -300px;
+    right: -300px;
+    bottom: 40px;
+
+    &.stickers-submit{
+      height: 0;
+    }
+
+  }
+
+
+  .comments__stickers-box {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #f7f7f7;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+
+  }
+
+  .comments__stickers-box-items {
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .comments__stickers-box-item-wrap {
+    transition: all 0.2s ease-out 0s;
+    box-sizing: border-box;
+    display: flex;
+    width: 25%;
+    height: 25%;
+    overflow: hidden;
+    padding: 5px;
+
+    &:hover {
+      background-color: #d9d8d7;
+    }
+
+  }
+
+  .comments__stickers-box-item {
+    cursor: pointer;
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
