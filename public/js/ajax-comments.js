@@ -98,7 +98,7 @@ bro_ajax_comments = {
                         $(".bro_ajax_comments__exceptions-message").remove();
                         if (json.hasOwnProperty('exceptions')) {
                             if (json.hasOwnProperty('exception_code')) {
-                                if (json.exception_code === 403) {
+                                if (json.exception_code === 403 || json.exception_code === 200 ) {
                                     $(window).trigger('bro_ajax_comments_error', {type: 'no-login', data: [json]});
                                 }
                             } else {
