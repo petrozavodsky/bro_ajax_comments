@@ -5,18 +5,19 @@ bro_ajax_editor = {
     run: function () {
         var this_class = this;
         this_class.editorRout();
+
         $(this_class.text_area_selector).trumbowyg({
-            svgPath:'/wp-content/plugins/bro_ajax_comments/public/js/vendor/trumbowyg/dist/ui/icons.svg',
-            semantic: true,
-            autogrow: true,
+            svgPath: '/wp-content/plugins/bro_ajax_comments/public/js/vendor/trumbowyg/dist/ui/icons.svg',
             lang: 'ru',
             btns: [
-                'btnGrp-semantic',
-                'btnGrp-lists'
-                // ['link'],
-                // ['insertImage'],
+                'strong',
+                'em',
+                'del',
+                'unorderedList',
+                'orderedList'
             ]
         });
+
 
     },
     editorRout: function () {

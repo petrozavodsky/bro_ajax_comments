@@ -1,5 +1,6 @@
 var $ = jQuery.noConflict();
 bro_ajax_comments = {
+    comment_text_area: "textarea#comment, .trumbowyg-editor",
     ajax_form_data: $("#commentform").serialize(),
     run: function () {
         var this_class = this;
@@ -13,13 +14,11 @@ bro_ajax_comments = {
         // this_class.preloader();
         this_class.scrill_to_comment_article();
 
-        $(window).on('bro_ajax_comments_change_text_data', function () {
+
+        $(window).on('bro_ajax_comments_beforeSubmitForm', function () {
             this_class.set_ajax_form_data();
         });
 
-        $(window).on('bro_ajax_comments_beforeSubmitForm', function () {
-            $(window).trigger('bro_ajax_comments_change_text_data');
-        });
 
     },
     set_ajax_form_data: function () {
@@ -39,7 +38,7 @@ bro_ajax_comments = {
         var this_class = this;
         this_class.ajax_submit("#commentform");
         $(selector).keydown(function (e) {
-            if (e.shiftKey && e.keyCode == 13) {
+            if (e.altKey && e.keyCode === 13) {
                 $(selector).trigger("submit");
             }
         });
@@ -70,11 +69,13 @@ bro_ajax_comments = {
     },
     ajax_submit: function (selector) {
         var this_class = this;
+        $(selector).attr('action', bro_ajax_comments_data.form_action);
         $(selector).find("[type='submit']").removeAttr('disabled');
         if (!$(selector).hasClass("load")) {
+            $(window).trigger('bro_ajax_comments_beforeSubmitForm');
             $(selector).submit(function (e) {
                 e.preventDefault();
-                $(window).trigger('bro_ajax_comments_beforeSubmitForm');
+                this_class.set_ajax_form_data();
                 var form_method = $(this).attr('method');
                 var form_action = $(this).attr('action');
                 var form_elem = $(this);
@@ -92,15 +93,18 @@ bro_ajax_comments = {
                     success: function (json) {
 
 
-                        console.log(json);
-
-
                         $(".bro_ajax_comments__exceptions-message").remove();
                         if (json.hasOwnProperty('exceptions')) {
                             if (json.hasOwnProperty('exception_code')) {
-                                if (json.exception_code === 403 || json.exception_code === 200 ) {
+
+                                $(this_class.comment_text_area).removeClass('empty');
+
+                                if (json.exception_code === 403 || json.exception_code === 200) {
                                     $(window).trigger('bro_ajax_comments_error', {type: 'no-login', data: [json]});
+                                } else if (json.exception_code === 411) {
+                                    $(this_class.comment_text_area).addClass('empty')
                                 }
+
                             } else {
                                 $(selector).prepend(json.html_exceptions);
                             }

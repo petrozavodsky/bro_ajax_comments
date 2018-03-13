@@ -65,7 +65,7 @@ class bro_ajax_comments_change_defaults
     public function comment_form_defaults_filter($args)
     {
 //        $args['fields']['url'] = '';
-        $args['comment_field'] = '<textarea id="comment" name="comment" maxlength="65525" aria-required="true" required="required"></textarea>';
+        $args['comment_field'] = '<div class="comment-form__text_area"><textarea id="comment" name="comment" maxlength="65525" aria-required="true" ></textarea> </div>';
         $args['logged_in_as'] = '';
         $args['format'] = 'html5';
         $args['submit_button'] = '<button name="%1$s" type="submit" id="%2$s" class="%3$s"  > %4$s </button>';
