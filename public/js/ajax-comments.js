@@ -73,6 +73,7 @@ bro_ajax_comments = {
         $(selector).find("[type='submit']").removeAttr('disabled');
         if (!$(selector).hasClass("load")) {
             $(window).trigger('bro_ajax_comments_beforeSubmitForm');
+
             $(selector).submit(function (e) {
                 e.preventDefault();
                 this_class.set_ajax_form_data();
@@ -80,6 +81,7 @@ bro_ajax_comments = {
                 var form_action = $(this).attr('action');
                 var form_elem = $(this);
                 var form_data = this_class.ajax_form_data;
+
                 console.log(form_data);
                 $.ajax({
                     type: form_method,
@@ -94,6 +96,7 @@ bro_ajax_comments = {
 
 
                         $(".bro_ajax_comments__exceptions-message").remove();
+
                         if (json.hasOwnProperty('exceptions')) {
                             if (json.hasOwnProperty('exception_code')) {
 

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 class bro_ajax_comments {
-	private $version = "2.1.1";
+	private $version = "2.1.5";
 	private $ajax_action_field = 'bro_ajax_comment';
 
 	public function __construct() {

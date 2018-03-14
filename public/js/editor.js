@@ -4,20 +4,24 @@ bro_ajax_editor = {
     text_area_selector: 'textarea#comment',
     run: function () {
         var this_class = this;
-        this_class.editorRout();
 
-        $(this_class.text_area_selector).trumbowyg({
-            svgPath: '/wp-content/plugins/bro_ajax_comments/public/js/vendor/trumbowyg/dist/ui/icons.svg',
-            lang: 'ru',
-            btns: [
-                'strong',
-                'em',
-                'del',
-                'unorderedList',
-                'orderedList'
-            ]
-        });
+        if (!('ontouchstart' in document.documentElement)) {
+            this_class.editorRout();
 
+            $(this_class.text_area_selector).trumbowyg({
+                svgPath: '/wp-content/plugins/bro_ajax_comments/public/js/vendor/trumbowyg/dist/ui/icons.svg',
+                lang: 'ru',
+                btns: [
+                    'strong',
+                    'em',
+                    'del',
+                    'unorderedList',
+                    'orderedList'
+                ],
+                removeformatPasted: true
+            });
+
+        }
 
     },
     editorRout: function () {
@@ -37,6 +41,8 @@ bro_ajax_editor = {
         $(this_class.text_area_selector).on('tbwchange', function () {
             $(window).trigger('bro_ajax_comments_change_text_data');
         });
+
+
     },
 
     insertEditor: function () {
