@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class bro_ajax_comments_editor {
 
-	private $version = "1.1.1";
+	private $version = "1.1.3";
 	private $file;
 
 	public function __construct( $file ) {
