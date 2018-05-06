@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/phpstorm
 
 ### PhpStorm ###
@@ -56,3 +55,4 @@ fabric.properties
 # End of https://www.gitignore.io/api/phpstorm
 
 node_modules
+/node_modules/
