@@ -6,6 +6,8 @@
  * Author : Alexandre Demode (Alex-D)
  *          Twitter : @AlexandreDemode
  *          Website : alex-d.fr
+ * Reviewed by : Abdou Developer (test20091)
+ * 	    Github : https://github.com/test20091
  */
 
 jQuery.trumbowyg.langs.fr = {
@@ -22,7 +24,7 @@ jQuery.trumbowyg.langs.fr = {
 
     bold: 'Gras',
     italic: 'Italique',
-    strikethrough: 'Rayé',
+    strikethrough: 'Barré',
     underline: 'Souligné',
 
     strong: 'Fort',
@@ -47,6 +49,7 @@ jQuery.trumbowyg.langs.fr = {
     justifyFull: 'Justifier',
 
     horizontalRule: 'Insérer un séparateur horizontal',
+    removeformat: 'Supprimer formatage',
 
     fullscreen: 'Plein écran',
 

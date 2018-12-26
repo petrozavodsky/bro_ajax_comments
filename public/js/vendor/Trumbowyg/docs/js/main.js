@@ -22,11 +22,11 @@ hljs.initHighlightingOnLoad();
                     ['viewHTML'],
                     ['undo', 'redo'],
                     ['formatting'],
-                    'btnGrp-design',
+                    ['strong', 'em', 'del', 'underline'],
                     ['link'],
                     ['image'],
-                    'btnGrp-justify',
-                    'btnGrp-lists',
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['unorderedList', 'orderedList'],
                     ['foreColor', 'backColor'],
                     ['preformatted'],
                     ['horizontalRule'],
@@ -48,7 +48,6 @@ hljs.initHighlightingOnLoad();
 
         // Demo switch
         var $demoTextarea = $('#trumbowyg-demo');
-        console.log($demoTextarea);
         $demoTextarea.trumbowyg(configurations.core);
         $('.demo-switcher .button').on('click', function () {
             var $current = $('.demo-switcher .current');

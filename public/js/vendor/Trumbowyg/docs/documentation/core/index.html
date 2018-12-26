@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Plugins | Trumbowyg : a lightweight WYSIWYG editor | Alex-D / Alexandre Demode</title>
+    <title>Core | Trumbowyg : a lightweight WYSIWYG editor | Alex-D / Alexandre Demode</title>
     <meta name="description" content="Trumbowyg is a jQuery plugin for create WYSIWYG editor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -46,6 +46,7 @@
                         <li><a href="#manage-content">Manage content</a></li>
                         <li><a href="#empty">Empty</a></li>
                         <li><a href="#enable-disable-edition">Enable/disable edition</a></li>
+                        <li><a href="#toggle">Toggle HTML/WYSIWYG</a></li>
                     </ul>
                 </li>
             </ul>
@@ -139,12 +140,20 @@ $modal = trumbowyg.openModalInsert({
         alt: {
             label: 'Alt',
             name: 'alt',
-            value: img.attr('alt')
+            value: img.attr('alt'),
+            type: 'text'.
+            attributes: {}
         },
         example: {
             // Missing label is replaced by the key of this object (here 'example')
             // Missing name is the key
             // When value is missing, value = ''
+            // When type is missing, 'text' is assumed. You can use all the input field types,
+            //   plus checkbox and radio (select and textarea are not supported)
+            // When attributes is missing, {} is used. Attributes are added as attributes to
+            //   the input element.
+            // For radio and checkbox fields, you will need to use attributes if you want it
+            //   to be checked by default.
         }
     },
     // Callback is called when user confirms
@@ -235,6 +244,17 @@ trumbowyg.empty();
             <pre><code class="javascript">
 trumbowyg.setDisabled(true);
 trumbowyg.setDisabled(false);
+            </code></pre>
+        </div>
+
+
+        <div class="feature">
+            <h3 id="toggle">Toggle between HTML & WYSIWYG modes</h3>
+            <p>
+                You can switch between HTML view and WYSIWYG view via toggle method.
+            </p>
+            <pre><code class="javascript">
+trumbowyg.toggle();
             </code></pre>
         </div>
     </section>

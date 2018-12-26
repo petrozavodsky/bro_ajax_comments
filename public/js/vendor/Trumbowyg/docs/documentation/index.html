@@ -67,8 +67,13 @@
                         <li><a href="#semantic">Semantic</a></li>
                         <li><a href="#reset-css">Reset CSS</a></li>
                         <li><a href="#remove-format-pasted">Remove format pasted</a></li>
+                        <li><a href="#tags-to-remove">Tags to remove</a></li>
+                        <li><a href="#tags-to-keep">Tags to keep</a></li>
                         <li><a href="#auto-grow">Auto grow</a></li>
                         <li><a href="#auto-grow-on-enter">Auto grow on enter</a></li>
+                        <li><a href="#image-width-modal-edit">Image width modal edit</a></li>
+                        <li><a href="#url-protocol">URL protocol</a></li>
+                        <li><a href="#minimal-links">Minimal links</a></li>
                     </ul>
                 </li>
                 <li>
@@ -87,6 +92,7 @@
                         <li><a href="#manage-content">Manage content</a></li>
                         <li><a href="#empty">Empty</a></li>
                         <li><a href="#enable-disable-edition">Enable/disable edition</a></li>
+                        <li><a href="#toggle">Toggle HTML/WYSIWYG</a></li>
                         <li><a href="#destroy-editor">Destroy editor</a></li>
                         <li><a href="#events">Events</a></li>
                     </ul>
@@ -174,7 +180,7 @@ $('#trumbowyg-demo').trumbowyg();
             </p>
             <pre><code class="javascript">
 $('#trumbowyg-demo').trumbowyg({
-    btns: ['strong', 'em', '|', 'insertImage'],
+    btns: [['strong', 'em',], ['insertImage']],
     autogrow: true
 });
             </code></pre>
@@ -583,6 +589,44 @@ $('.trumbowyg').trumbowyg({
         </div>
 
 
+        <div class="feature" data-added="2.0.0">
+            <h3 id="tags-to-remove">Tags to remove</h3>
+            <p>
+                Allow to sanitize the code by removing all tags you want. The <code>tagsToRemove</code>
+                option is an array.
+            </p>
+            <pre><code class="javascript">
+$('.trumbowyg').trumbowyg({
+    tagsToRemove: ['script', 'link']
+});
+            </code></pre>
+            <p class="note">
+                You must do the sanitize server-side too to avoid some security issues like XSS.
+            </p>
+            <p class="note">
+                Tags to remove is an empty array by default (set to <code>[]</code>).
+            </p>
+        </div>
+
+
+        <div class="feature" data-added="2.12.0">
+            <h3 id="tags-to-keep">Tags to keep</h3>
+            <p class="added-feature">Added in 2.12.0</p>
+            <p>
+                Sometimes you want to keep some empty <code>i</code> tags for <em>Font Awesome</em> or anything else. You can define this list via the <code>tagsToKeep</code>
+                option.
+            </p>
+            <pre><code class="javascript">
+$('.trumbowyg').trumbowyg({
+    tagsToKeep: ['i', 'script[src]']
+});
+            </code></pre>
+            <p class="note">
+                Default tags to keep are <code>['hr', 'img', 'embed', 'iframe', 'input']</code>.
+            </p>
+        </div>
+
+
         <div class="feature" data-added="1.0.0">
             <h3 id="auto-grow">Auto grow</h3>
             <p>
@@ -614,6 +658,77 @@ $('.trumbowyg').trumbowyg({
             </code></pre>
             <p class="note">
                 Autogrow on enter is not active by default (set to <code>false</code>).
+            </p>
+        </div>
+
+
+        <div class="feature" data-added="2.9.0">
+            <h3 id="image-width-modal-edit">Image width modal edit</h3>
+            <p class="added-feature">Added in 2.9.0</p>
+            <p>
+                Add a field in image insert/edit modal which allow users to set the image width.
+                To activate this feature, use the following option:
+            </p>
+            <pre><code class="javascript">
+$('.trumbowyg').trumbowyg({
+    imageWidthModalEdit: true
+});
+            </code></pre>
+            <p class="note">
+                Image width modal edit is not active by default (set to <code>false</code>).
+            </p>
+        </div>
+
+
+        <div class="feature" data-added="2.9.4">
+            <h3 id="url-protocol">URL protocol</h3>
+            <p class="added-feature">Added in 2.9.4</p>
+            <p>
+                An option to auto-prefix URLs with a protocol.
+            </p>
+            <p>
+                When this option
+                is set to <code>true</code>, URLs missing a protocol will be
+                prefixed with <code>https://</code>. Alternatively, a string can
+                be provided for a custom prefix.
+            </p>
+            <p>
+              For example, a value of <code>true</code> would convert
+              <code>example.com</code> to
+              <code>https://example.com</code>, while a value of
+              <code>ftp</code> converts to
+              <code>ftp://example.com</code>.
+            </p>
+            <pre><code class="javascript">
+$('.trumbowyg').trumbowyg({
+    urlProtocol: true
+});
+            </code></pre>
+            <p class="note">
+              Anchors, email addresses and relative links are left unchanged.
+            </p>
+            <p class="note">
+                URL protocol is not active by default (set to <code>false</code>).
+            </p>
+        </div>
+
+
+        <div class="feature" data-added="2.9.4">
+            <h3 id="minimal-links">Minimal links</h3>
+            <p class="added-feature">Added in 2.9.4</p>
+            <p>
+                Reduce the link overlay to use only <code>url</code> and
+                <code>text</code> fields, omitting <code>title</code> and
+                <code>target</code>.
+            </p>
+            <pre><code class="javascript">
+$('.trumbowyg').trumbowyg({
+    minimalLinks: true
+});
+            </code></pre>
+            <p class="note">
+                The minimal links option is not active by default (set to
+                <code>false</code>).
             </p>
         </div>
     </section>
@@ -903,13 +1018,20 @@ $("#editor").trumbowyg('openModalInsert', {
         alt: {
             label: 'Alt',
             name: 'alt',
-            value: img.attr('alt')
+            value: img.attr('alt'),
+            type: 'text'.
+            attributes: {}
         },
         example: {
             // Missing label is replaced by the key of this object (here 'example')
             // Missing name is the key
             // When value is missing, value = ''
-        }
+            // When type is missing, 'text' is assumed. You can use all the input field types,
+            //   plus checkbox and radio (select and textarea are not supported)
+            // When attributes is missing, {} is used. Attributes are added as attributes to
+            //   the input element.
+            // For radio and checkbox fields, you will need to use attributes if you want it
+            //   to be checked by default.        }
     },
     callback: function(values){
         img.attr('src', values['url']);
@@ -998,6 +1120,18 @@ $('#editor').trumbowyg('empty');
             <pre><code class="javascript">
 $('#editor').trumbowyg('disable');
 $('#editor').trumbowyg('enable');
+            </code></pre>
+        </div>
+
+
+        <div class="feature" data-added="2.9.0">
+            <h3 id="toggle">Toggle between HTML & WYSIWYG modes</h3>
+            <p class="added-feature">Added in 2.9.0</p>
+            <p>
+                You can switch between HTML view and WYSIWYG view via toggle method.
+            </p>
+            <pre><code class="javascript">
+$('#editor').trumbowyg('toggle');
             </code></pre>
         </div>
 

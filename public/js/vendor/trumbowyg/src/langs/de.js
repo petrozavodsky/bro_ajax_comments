@@ -40,13 +40,14 @@ jQuery.trumbowyg.langs.de = {
     justifyFull: 'Blocksatz',
 
     horizontalRule: 'Horizontale Linie einfügen',
-
+    removeformat: 'Format entfernen',
+    
     fullscreen: 'Vollbild',
 
-    close: 'Schliessen',
+    close: 'Schließen',
 
     submit: 'Bestätigen',
-    reset: 'Rücksetzen',
+    reset: 'Zurücksetzen',
 
     required: 'Erforderlich',
     description: 'Beschreibung',
