@@ -12,11 +12,9 @@ class bro_ajax_comments_change_defaults {
 		add_filter( 'comment_form_defaults', array( __CLASS__, 'comment_form_defaults_filter' ) );
 		add_filter( 'cancel_comment_reply_link', "__return_empty_string", 10, 3 );
 		add_filter( 'comment_form_default_fields', array( $this, "comment_form_default_fields_filter" ) );
-
-		add_action( 'comment_form_before_fields', array( __CLASS__, "comment_form_before_fields_filter" ) );
-		add_action( 'comment_form_after_fields', array( __CLASS__, "comment_form_after_fields_filter" ) );
+		add_action( 'comment_form_before_fields', array( __CLASS__, "comment_form_before_fields_filter" ), 10 );
+		add_action( 'comment_form_after_fields', array( __CLASS__, "comment_form_after_fields_filter" ), 10 );
 		add_action( 'preprocess_comment', array( __CLASS__, 'allowed_tags' ) );
-
 	}
 
 	public static function allowed_tags( $dannie ) {
