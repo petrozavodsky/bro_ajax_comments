@@ -17,7 +17,7 @@ class bro_ajax_comments {
 	private $ajax_action_field = 'bro_ajax_comment';
 
 	public function __construct() {
-		add_action( "wp_enqueue_scripts", [this, "add_js_css"] );
+		add_action( "wp_enqueue_scripts", [$this, "add_js_css"] );
 		$this->init_ajax_action();
 	}
 
